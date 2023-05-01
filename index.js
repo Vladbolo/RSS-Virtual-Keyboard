@@ -1,10 +1,17 @@
 const keysEnglish = [
   '`', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
-  'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', 'DEL',
-  'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", '\',', 'Enter',
+  'Tab', 'q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p', '[', ']', '\\', 'DEL',
+  'CapsLock', 'a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l', ';', "'", 'Enter',
   'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift',
   'Ctrl', 'Win', 'Alt', '', 'Alt', 'Ctrl', '◄', '▼', '►'
 ]
+
+const keysRussia = ['ё', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '-', '=', 'Backspace',
+'Tab', 'й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х', 'ъ', 'DEL',
+'CapsLock', 'ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', "э", '\',', 'Enter',
+'Shift', 'z', 'x', 'c', 'v', 'b', 'n', 'm', ',', '.', '/', '▲', 'Shift',
+'Ctrl', 'Win', 'Alt', '', 'Alt', 'Ctrl', '◄', '▼', '►']
+
 
 const inputField = document.createElement("textarea");
 const keyboard = document.createElement("div");
@@ -41,9 +48,28 @@ const setUpperCaseKeys = () => {
   }
 }
 
+window.addEventListener('keydown', function(event) {
+  const keyCode = event.key;
+  for (let key of keyButtons) {
+    if (keyCode === key.innerHTML) {
+      key.classList.add('active')
+    }  
+  }
+});
+
+window.addEventListener('keyup', function(event) {
+  const keyCode = event.key;
+  for (let key of keyButtons) {
+    if (keyCode === key.innerHTML) {
+      key.classList.remove('active')
+    }  
+  }
+});
+
 //  Spacebar
 keyButtons[58].addEventListener('click', () => {
   inputField.innerHTML += ' '
+  
 })
 
 // Tab
@@ -60,6 +86,8 @@ keyButtons[41].addEventListener('click', () => {
 keyButtons[42].addEventListener('mousedown', () => {
   setUpperCaseKeys()
 })
+
+
 keyButtons[42].addEventListener('mouseup', () => {
   setLowerCaseKeys()
 })
@@ -73,26 +101,38 @@ keyButtons[54].addEventListener('mouseup', () => {
 })
 
 //  Capslock
-keyButtons[28].addEventListener('click', () => {
+keyButtons[29].addEventListener('click', () => {
   isCapsOn = !isCapsOn;
   if (isCapsOn === true) {
-    keyButtons[28].style.backgroundColor = 'green'
+    keyButtons[29].style.backgroundColor = '#5571ee'
     setUpperCaseKeys()
   } else {
-    keyButtons[28].style.backgroundColor = '#1C232E'
+    keyButtons[29].style.backgroundColor = '#1C232E'
+    setLowerCaseKeys()
+  }
+})
+
+keyButtons[29].addEventListener('keydown', () => {
+  isCapsOn = !isCapsOn;
+  if (isCapsOn === true) {
+    keyButtons[29].style.backgroundColor = '#5571ee'
+    setUpperCaseKeys()
+  } else {
+    keyButtons[29].style.backgroundColor = '#1C232E'
     setLowerCaseKeys()
   }
 })
 
 // Backspace
 keyButtons[13].addEventListener('click', () => {
+
   if (inputField.innerHTML !== undefined) {
     inputField.innerHTML = inputField.innerHTML.slice(0, inputField.innerHTML.length - 1)
   }
 })
 
 //Del
-keyButtons[27].addEventListener('click', () => {
+keyButtons[28].addEventListener('click', () => {
   inputField.innerHTML = '';
 })
 
@@ -101,6 +141,51 @@ for (const key of keyButtons) {
   if (key.innerHTML.length === 1) {
     if(key.innerHTML !== '▲' && key.innerHTML !== '►' && key.innerHTML !==  '▼' && key.innerHTML !== '◄'){
       key.addEventListener('click', () => inputField.innerHTML += key.innerHTML)
+      key.addEventListener('keydown', () => inputField.innerHTML += key.innerHTML)
       }
+      
   }
 }
+
+
+  window.addEventListener('keydown', function(event) {
+    const keyCode = event.key;
+    for (let key of keyButtons) {
+      if (keyCode === key.innerHTML) {
+        key.classList.add('active')
+      }  
+    }
+  });
+
+  window.addEventListener('keyup', function(event) {
+    const keyCode = event.key;
+    for (let key of keyButtons) {
+      if (keyCode === key.innerHTML) {
+        key.classList.remove('active')
+      }  
+    }
+  });
+
+  window.addEventListener('keydown', function(event) {
+    const keyCode = event.key;
+    if (keyCode == 'Shift') {
+      setUpperCaseKeys()
+    }
+  });
+
+  window.addEventListener('keyup', function(event) {
+    const keyCode = event.key;
+    if (keyCode == 'Shift') {
+      setLowerCaseKeys()
+    }
+  });
+  console.log(inputField.innerHTML)
+  window.addEventListener('keydown', function(event) {
+    
+    if(event.code == 'Delete') {
+      inputField.innerHTML = '';
+      console.log(inputField.innerHTML)
+    }
+  })
+
+ 

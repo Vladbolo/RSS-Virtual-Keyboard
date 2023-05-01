@@ -1,5 +1,110 @@
-* {
-    margin: 0;
-    padding: 0;
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+body{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.textarea{
+    height:30vh;
+    width: 70%;
+    margin-top:10vh;
+    font-size:16px;
+    resize:none;
+    padding-top: 10px;
+    padding-left:10px;
+    outline: none;
+    font-family: 'Roboto Mono', monospace;
+   
+}
+#keyboard{
+    display:flex;
+    flex-wrap: wrap;
+    justify-self: center;
+    width:70%;
+    margin-top:5vh;
+    padding: 2.5vw 2vw 2.5vw 2vw;
+}
+.key{
+    width: calc(70vw / 15);
+    height:calc(70vw / 25);
+    margin:.03vw;
+    border-radius:5px;
+    border-color:black;
+    font-weight: bold;
+    font-size:1vw;
+    background-color:#3a424e;
+    color:white;
+    font-family: 'Roboto Mono', monospace;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+.key:hover{
+    cursor: pointer;
+}
+.key:active,.key:nth-child(1):active,.key:nth-child(14):active,.key:nth-child(15):active,.key:nth-child(43):active,.key:nth-child(56):active, .key:nth-child(29):active{
+    background-color: #5571ee;
+    color:black;
+    transition: ease-in-out;
+}
+.key:nth-child(14){
+    width: calc(1.5 * (70vw / 15));
+    background-color: #1C232E;
+    color:darkgray;
+}
+.key:nth-child(29) {
+    width: calc(1.5 * (70vw / 33));
+    background-color: #1C232E;
+    color:darkgray; 
+}
+.key:nth-child(30) {
+    width: calc(1.5 * (70vw / 15));
+    background-color: #1C232E;
+    color:darkgray; 
+}
+.key:nth-child(43){
+    width: calc(2.5 * (70vw / 15));
+    background-color: #1C232E;
+    color:darkgray;
+}
+.key:nth-child(56),:nth-child(61){
+    width: calc(1.28 * (70vw / 15));
+    background-color: #1C232E;
+    color:darkgray;
+}
+.key:nth-child(15){
+    width: calc(1.5 * (70vw / 28));
+    background-color: #1C232E;
+    color:darkgray;
+}
+.key:nth-child(42) {
+    width: calc(1.5 * (70vw / 11.17));
+    background-color: #1C232E;
+    color:darkgray; 
+}
+.key:nth-child(1),:nth-child(57),:nth-child(58),:nth-child(60),:nth-child(55),:nth-child(54),:nth-child(62),:nth-child(63),:nth-child(64){
+    background-color: #1C232E;
+    color:darkgray;
+}
+.key:nth-child(59){
+    width: calc(6 * (70vw / 15));
+    color:darkgray;
 }
 
+.active {
+    background-color: #5571ee;
+}
+
+@media only screen and (max-width: 768px){
+    .key{
+        border-radius: 0;
+        border-width: 0.1px;
+    }
+    .textarea{
+        height:15vh;
+    }
+}
